@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ShinyHQ — We build AI-powered apps</title>
+<meta name="description" content="ShinyHQ, LLC is an independent app studio in Las Vegas, NV building AI-powered apps that make everyday life easier. Maker of Cravlo: AI Food Finder." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="assets/cravlo-icon.png" />
+<meta property="og:title" content="ShinyHQ — We build AI-powered apps" />
+<meta property="og:description" content="An independent app studio in Las Vegas, NV. Maker of Cravlo: AI Food Finder." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#0B2A35" />
+<!--
+  ShinyHQ, LLC — standalone organization website for GitHub Pages.
+  Self-contained: only relative assets (assets/*) + Google Fonts CDN.
+  Just serve this folder as-is; index.html loads at the site root.
+-->
+<style>
+  :root{
+    --bg:#EEF1F2; --paper:#fff; --paper-2:#F6F8F8;
+    --ink:#0C2A33; --ink-2:#5B7178; --ink-3:#869CA2;
+    --navy:#0B2A35; --teal:#1C8CAE; --teal-soft:#DCEEF2;
+    --mint:#7FE0C9; --line:rgba(12,42,51,.10); --line-2:rgba(12,42,51,.06);
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.5}
+  a{text-decoration:none;color:inherit}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-.02em;margin:0}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:'Space Mono',monospace}
+
+  /* ---------- shared atoms ---------- */
+  .mark{display:inline-flex;align-items:center;justify-content:center;
+    background:linear-gradient(150deg,var(--teal),#0B2A35);flex-shrink:0}
+  .wordmark{display:inline-flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;
+    font-weight:600;font-size:21px;letter-spacing:-.01em;color:var(--ink)}
+  .badge{display:inline-flex;align-items:center;gap:10px;padding:10px 18px 10px 16px;border-radius:14px;
+    background:var(--navy);border:1px solid rgba(0,0,0,.06);transition:transform .15s ease, box-shadow .15s ease}
+  .badge:hover{transform:translateY(-1px);box-shadow:0 12px 26px -12px rgba(11,42,53,.5)}
+  .badge svg{fill:#fff;flex-shrink:0}
+  .badge .b-sm{display:block;font-size:9.5px;letter-spacing:.04em;color:rgba(255,255,255,.85)}
+  .badge .b-lg{display:block;font-size:17px;font-weight:600;color:#fff;font-family:'Space Grotesk',sans-serif;line-height:1.05}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;font-size:14px;
+    font-weight:600;padding:10px 18px;border-radius:999px;transition:transform .15s ease}
+  .pill:hover{transform:translateY(-1px)}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink-2);
+    background:var(--paper);border:1px solid var(--line);padding:7px 13px;border-radius:999px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+  /* ---------- nav ---------- */
+  header.nav{position:sticky;top:0;z-index:40;background:rgba(238,241,242,.82);
+    backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line-2)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-2);transition:color .15s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-right{display:flex;align-items:center;gap:22px}
+  .nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:6px}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;border-radius:2px}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;text-align:center;padding:88px 0 76px;
+    background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:24px 24px}
+  .hero::before{content:"";position:absolute;top:-180px;left:50%;transform:translateX(-50%);
+    width:760px;height:520px;border-radius:50%;
+    background:radial-gradient(circle,rgba(28,140,174,.16),transparent 64%);pointer-events:none}
+  .hero-in{position:relative;z-index:2;max-width:760px;margin:0 auto}
+  .eyebrow{font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.16em;color:var(--teal);font-weight:700}
+  .hero h1{font-size:62px;line-height:1.03;margin:20px 0 0}
+  .hero h1 em{font-style:normal;color:var(--teal)}
+  .hero p{font-size:18px;line-height:1.55;color:var(--ink-2);max-width:540px;margin:22px auto 0}
+  .hero-cta{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:32px;flex-wrap:wrap}
+  .ghost{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:var(--ink);
+    padding:12px 20px;border-radius:12px;border:1px solid var(--line);background:var(--paper);transition:transform .15s, border-color .15s}
+  .ghost:hover{transform:translateY(-1px);border-color:var(--teal)}
+  .hero-meta{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:30px;flex-wrap:wrap;
+    font-size:13.5px;color:var(--ink-3)}
+  .hero-meta b{color:var(--ink-2);font-weight:600}
+  .meta-sep{width:4px;height:4px;border-radius:50%;background:var(--ink-3)}
+
+  /* ---------- section frame ---------- */
+  section.block{padding:84px 0}
+  .sec-head{text-align:center;max-width:620px;margin:0 auto 52px}
+  .sec-tag{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--teal);font-weight:700}
+  .sec-head h2{font-size:38px;margin:14px 0 0}
+  .sec-head p{font-size:16.5px;color:var(--ink-2);margin:14px 0 0;line-height:1.55}
+
+  /* ---------- cravlo showcase card ---------- */
+  .app-card{background:var(--paper);border:1px solid var(--line);border-radius:30px;overflow:hidden;
+    display:grid;grid-template-columns:1fr 1.02fr;box-shadow:0 40px 90px -50px rgba(11,42,53,.35)}
+  .app-info{padding:54px 50px}
+  .app-id{display:flex;align-items:flex-start;gap:16px}
+  .app-icon{width:64px;height:64px;border-radius:16px;overflow:hidden;flex-shrink:0;
+    box-shadow:0 8px 20px -8px rgba(11,42,53,.4);background:linear-gradient(150deg,var(--teal),#0B2A35)}
+  .app-id h3{font-size:23px;line-height:1.18;text-wrap:balance}
+  .app-id .meta{font-size:13.5px;color:var(--ink-2);margin-top:6px}
+  .stars{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-size:13.5px;color:var(--ink-2)}
+  .stars .s{color:#F1A33B;letter-spacing:1px;font-size:15px}
+  .app-desc{font-size:16px;line-height:1.6;color:var(--ink-2);margin:20px 0 0}
+  .feat-list{display:flex;flex-direction:column;gap:14px;margin:26px 0 0}
+  .feat{display:flex;gap:13px;align-items:flex-start}
+  .feat .fi{width:34px;height:34px;border-radius:10px;background:var(--teal-soft);color:var(--teal);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+  .feat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:600}
+  .feat span{display:block;font-size:13.5px;color:var(--ink-2);margin-top:2px;line-height:1.45}
+  .app-actions{display:flex;align-items:center;gap:16px;margin-top:30px;flex-wrap:wrap}
+  .app-note{font-size:12px;color:var(--ink-3);margin-top:16px;line-height:1.5}
+
+  .app-art{position:relative;background:linear-gradient(160deg,#F4F8F8,#E6EEEF);
+    display:flex;align-items:center;justify-content:center;padding:46px 20px;overflow:hidden}
+  .app-art::before{content:"";position:absolute;inset:0;
+    background-image:radial-gradient(rgba(12,42,51,.06) 1px,transparent 1px);background-size:20px 20px}
+  .phones{position:relative;z-index:2;display:flex;align-items:flex-end;gap:0}
+  .phone{position:relative;background:#0B2A35;border-radius:38px;padding:9px;flex-shrink:0;
+    box-shadow:0 36px 70px -30px rgba(11,42,53,.55),0 0 0 1px rgba(0,0,0,.04)}
+  .phone .screen{border-radius:30px;overflow:hidden;background:#fff;display:block}
+  .phone .notch{display:none}
+  .phone .screen img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .app-icon img{width:100%;height:100%;object-fit:cover;display:block}
+  .phone.lg{width:200px;z-index:2}
+  .phone.lg .screen{width:182px;height:376px}
+  .phone.sm{width:150px;margin-bottom:18px;z-index:1}
+  .phone.sm .screen{width:132px;height:272px}
+  .phones .phone.sm:first-child{margin-right:-18px}
+  .phones .phone.sm:last-child{margin-left:-18px}
+
+  /* ---------- about ---------- */
+  .about{background:var(--navy);color:#fff;border-radius:0}
+  .about .sec-tag{color:var(--mint)}
+  .about h2{color:#fff}
+  .about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+  .vcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:20px;padding:30px 26px}
+  .vcard .vi{width:42px;height:42px;border-radius:12px;background:rgba(127,224,201,.14);color:var(--mint);
+    display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:18px}
+  .vcard h3{font-size:18px;color:#fff}
+  .vcard p{font-size:14px;color:rgba(255,255,255,.62);margin:10px 0 0;line-height:1.55}
+  .about-lead{max-width:640px;margin:0 auto 46px;text-align:center}
+  .about-lead p{font-size:17px;color:rgba(255,255,255,.7);margin:16px 0 0;line-height:1.6}
+
+  /* ---------- contact ---------- */
+  .contact{text-align:center}
+  .contact-card{background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:56px 40px;
+    max-width:680px;margin:0 auto;position:relative;overflow:hidden}
+  .contact-card::before{content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+    width:420px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(28,140,174,.12),transparent 65%)}
+  .contact-card>*{position:relative;z-index:2}
+  .contact-card h2{font-size:32px}
+  .contact-card p{font-size:16px;color:var(--ink-2);margin:14px auto 0;max-width:440px}
+  .contact-actions{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:28px;flex-wrap:wrap}
+
+  /* ---------- footer ---------- */
+  footer.ft{background:var(--paper);border-top:1px solid var(--line-2);padding:56px 0 30px}
+  .ft-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px;padding-bottom:40px;border-bottom:1px solid var(--line-2)}
+  .ft-brand p{font-size:14px;color:var(--ink-2);margin:16px 0 0;max-width:300px;line-height:1.6}
+  .ft-col h4{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--ink-3);
+    text-transform:uppercase;letter-spacing:.08em;margin:0 0 16px}
+  .ft-col a{display:block;font-size:14.5px;color:var(--ink-2);margin-bottom:11px;transition:color .15s}
+  .ft-col a:hover{color:var(--teal)}
+  .ft-bot{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;flex-wrap:wrap}
+  .ft-bot p{font-size:13px;color:var(--ink-3);margin:0}
+  .ft-bot .legal{font-size:12px;color:var(--ink-3);max-width:520px;line-height:1.5}
+
+  /* ---------- entrance: none (content is always visible) ---------- */
+
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    .nav-links{display:none}
+    .nav-toggle{display:block}
+    .nav.open .nav-links{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;
+      gap:0;background:var(--paper);border-bottom:1px solid var(--line);padding:8px 0}
+    .nav.open .nav-links a{padding:14px 28px;width:100%}
+    .hero h1{font-size:46px}
+    .hero p{font-size:16.5px}
+    .app-card{grid-template-columns:1fr}
+    .app-info{padding:40px 30px}
+    .app-art{padding:40px 16px}
+    .phone.sm{display:none}
+    .about-grid{grid-template-columns:1fr}
+    .ft-top{grid-template-columns:1fr;gap:26px}
+  }
+  @media(max-width:520px){
+    .wrap{padding:0 20px}
+    .hero{padding:64px 0 56px}
+    .hero h1{font-size:38px}
+    .sec-head h2{font-size:30px}
+    .phone.lg{width:188px}
+    .phone.lg .screen{width:170px;height:350px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="wordmark" href="#top" aria-label="ShinyHQ home">
+      <span class="mark" style="width:32px;height:32px;border-radius:9px">
+        <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true">
+          <circle cx="12" cy="12" r="7" fill="none" stroke="#fff" stroke-width="2"></circle>
+          <circle cx="12" cy="12" r="2.4" fill="#fff"></circle>
+          <circle cx="17.4" cy="6.6" r="1.5" fill="#7FE0C9"></circle>
+        </svg>
+      </span>
+      ShinyHQ
+    </a>
+    <div class="nav-right">
+      <nav class="nav-links">
+        <a href="#apps">Apps</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="pill" href="https://apps.apple.com/us/app/cravlo-ai-food-finder/id6770205454" target="_blank" rel="noopener">Get Cravlo</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <span class="eyebrow" data-rv>SHINYHQ · INDIE APP STUDIO</span>
+    <h1 data-rv>We build <em>AI-powered apps</em><br />to make life easier.</h1>
+    <p data-rv>ShinyHQ is an independent software studio in Las Vegas. We design and ship thoughtful, AI-driven apps for iPhone — starting with Cravlo, your AI food companion.</p>
+    <div class="hero-cta" data-rv>
+      <a class="pill" href="#apps" style="padding:13px 24px;font-size:15px">See our apps</a>
+      <a class="ghost" href="#about">About ShinyHQ</a>
+    </div>
+    <div class="hero-meta" data-rv>
+      <span><b>Based in</b> Las Vegas, NV</span>
+      <span class="meta-sep"></span>
+      <span><b>Building for</b> everything</span>
+      <span class="meta-sep"></span>
+      <span><b>1 app</b> live on the App Store</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPS ============ -->
+<section class="block" id="apps">
+  <div class="wrap">
+    <div class="sec-head" data-rv>
+      <span class="sec-tag">OUR APPS</span>
+      <h2>The apps we make</h2>
+      <p>Each ShinyHQ app solves one everyday problem really well. Here's what we're shipping today.</p>
+    </div>
+
+    <div class="app-card" data-rv>
+      <div class="app-info">
+        <div class="app-id">
+          <span class="app-icon">
+            <img src="assets/cravlo-icon.png" alt="Cravlo app icon" />
+          </span>
+          <div>
+            <h3>Cravlo: AI Food Finder</h3>
+            <div class="meta">Food &amp; Drink · iPhone · Free</div>
+          </div>
+        </div>
+
+        <div class="stars"><span class="s">★★★★★</span> 5.0 · rated on the App Store</div>
+
+        <p class="app-desc">Snap a meal or describe a craving — Cravlo recognizes the dish, finds nearby restaurants that serve it, and logs your calories, macros and fasting from the same photo. Food discovery and tracking, finally in one app.</p>
+
+        <div class="feat-list">
+          <div class="feat">
+            <span class="fi">◎</span>
+            <div><b>Photo-to-restaurant search</b><span>Recognizes any dish and surfaces nearby spots — with ratings, distance and hours.</span></div>
+          </div>
+          <div class="feat">
+            <span class="fi">◍</span>
+            <div><b>Effortless calorie &amp; macro tracking</b><span>Log by photo or description; see your day in clean progress rings.</span></div>
+          </div>
+          <div class="feat">
+            <span class="fi">◷</span>
+            <div><b>Built-in fasting timer</b><span>Run an intermittent-fasting window with live stages and milestones.</span></div>
+          </div>
+        </div>
+
+        <div class="app-actions">
+          <a class="badge" href="https://apps.apple.com/us/app/cravlo-ai-food-finder/id6770205454" target="_blank" rel="noopener" aria-label="Download Cravlo on the App Store">
+            <svg viewBox="0 0 384 512" width="20" height="20" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg>
+            <span><span class="b-sm">Download on the</span><span class="b-lg">App Store</span></span>
+          </a>
+        </div>
+        <p class="app-note">Calorie and macro figures are AI estimates for general wellness — not medical or nutritional advice.</p>
+      </div>
+
+      <div class="app-art">
+        <div class="phones">
+          <div class="phone sm">
+            <div class="screen"><img src="assets/cravlo-discover.png" alt="Cravlo Discover AI screen" /></div>
+          </div>
+          <div class="phone lg">
+            <div class="screen"><img src="assets/cravlo-home.png" alt="Cravlo home screen" /></div>
+          </div>
+          <div class="phone sm">
+            <div class="screen"><img src="assets/cravlo-tracking.png" alt="Cravlo calorie tracking screen" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="block about" id="about">
+  <div class="wrap">
+    <div class="about-lead" data-rv>
+      <span class="sec-tag">ABOUT</span>
+      <h2 style="font-size:38px;margin-top:14px">A small studio, sweating the details</h2>
+      <p>ShinyHQ, LLC is an independent app studio based in Las Vegas, Nevada. We're a tiny team that cares about fast, focused, privacy-respecting software — using AI where it genuinely helps, and getting out of your way everywhere else.</p>
+    </div>
+    <div class="about-grid">
+      <div class="vcard" data-rv>
+        <div class="vi">✦</div>
+        <h3>AI where it helps</h3>
+        <p>We use AI to remove busywork — like turning a single food photo into a restaurant search and a calorie log.</p>
+      </div>
+      <div class="vcard" data-rv>
+        <div class="vi">⛉</div>
+        <h3>Privacy-respecting</h3>
+        <p>Sign in with Apple or email, and delete your account and all associated data anytime, right from the app.</p>
+      </div>
+      <div class="vcard" data-rv>
+        <div class="vi">◍</div>
+        <h3>Built for iPhone</h3>
+        <p>Native, fast and considered — designed specifically for iOS rather than ported from somewhere else.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="block contact" id="contact">
+  <div class="wrap">
+    <div class="contact-card" data-rv>
+      <span class="sec-tag">CONTACT</span>
+      <h2 style="margin-top:14px">Get in touch</h2>
+      <p>Questions, support, or partnership ideas? We read every message and usually reply within a day.</p>
+      <div class="contact-actions">
+        <a class="badge" href="mailto:support@shinyhq.com" style="background:var(--navy)">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7L4 6.8V18h16V6.8L12 12z" fill="#fff"></path></svg>
+          <span><span class="b-sm">Email us</span><span class="b-lg" style="font-size:15px">support@shinyhq.com</span></span>
+        </a>
+        <span class="chip"><span class="dot"></span>Las Vegas, NV · United States</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a class="wordmark" href="#top">
+          <span class="mark" style="width:30px;height:30px;border-radius:8px">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <circle cx="12" cy="12" r="7" fill="none" stroke="#fff" stroke-width="2"></circle>
+              <circle cx="12" cy="12" r="2.4" fill="#fff"></circle>
+              <circle cx="17.4" cy="6.6" r="1.5" fill="#7FE0C9"></circle>
+            </svg>
+          </span>
+          ShinyHQ
+        </a>
+        <p>An independent app studio in Las Vegas, NV building AI-powered apps that make everyday life a little easier.</p>
+      </div>
+      <div class="ft-col">
+        <h4>Product</h4>
+        <a href="#apps">Our apps</a>
+        <a href="https://apps.apple.com/us/app/cravlo-ai-food-finder/id6770205454" target="_blank" rel="noopener">Cravlo on the App Store</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="ft-col">
+        <h4>Company</h4>
+        <a href="mailto:support@shinyhq.com">Contact</a>
+        <a href="https://cravlo-api.fly.dev/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        <span style="display:block;font-size:14.5px;color:var(--ink-2);margin-bottom:11px">Las Vegas, NV · USA</span>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p>© <span id="yr">2026</span> ShinyHQ, LLC. All rights reserved.</p>
+      <p class="legal">Cravlo is a product of ShinyHQ, LLC. Apple, the Apple logo and App Store are trademarks of Apple Inc.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // mobile nav
+  var nav = document.getElementById('nav'), tog = document.getElementById('navToggle');
+  tog.addEventListener('click', function(){ nav.classList.toggle('open'); });
+  nav.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click', function(){ nav.classList.remove('open'); });
+  });
+
+  // mobile nav close on link tap (handled above)
+</script>
+</body>
+</html>
